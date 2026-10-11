@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.auth/
+.testvibe/
+config/environments/
+test-results/
+playwright-report/
+allure-results/
+allure-report/
+reports/
+coverage/
+traces/
+screenshots/
+videos/
+.DS_Store

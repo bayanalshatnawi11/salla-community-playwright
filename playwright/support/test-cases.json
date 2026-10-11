@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "sourceId": "1",
+      "automationId": "SA-0001",
+      "name": "Homepage",
+      "platform": "Web",
+      "feature": "Community",
+      "story": "Homepage",
+      "severity": "normal",
+      "tags": ["regression", "feature-community"],
+      "steps": "افتح الرئيسية وتحقق من ظهور عنوان «مجتمع التجارة الالكترونية»، حقل البحث، وروابط التنقل الرئيسية.",
+      "expectedResult": "تظهر الرئيسية بعنوان مجتمع التجارة الالكترونية، وحقل البحث، وروابط التنقل الرئيسية."
+    },
+    {
+      "sourceId": "2",
+      "automationId": "SA-0002",
+      "name": "Category navigation",
+      "platform": "Web",
+      "feature": "Community",
+      "story": "Categories",
+      "severity": "normal",
+      "tags": ["regression", "feature-community"],
+      "steps": "من الرئيسية اضغط «محتاج فزعتكم». تحقق من المسار /category-detail/need-your-help/13، وعنوان الصفحة، وظهور منشور واحد على الأقل.",
+      "expectedResult": "يفتح المسار /category-detail/need-your-help/13 ويظهر عنوان محتاج فزعتكم ومنشور واحد على الأقل."
+    },
+    {
+      "sourceId": "3",
+      "automationId": "SA-0003",
+      "name": "Post details",
+      "platform": "Web",
+      "feature": "Community",
+      "story": "Posts",
+      "severity": "normal",
+      "tags": ["regression", "feature-community"],
+      "steps": "من «محتاج فزعتكم»، التقط عنوان منشور ظاهر ثم افتحه. تحقق من الانتقال إلى /detail/، وتطابق عنوان التفاصيل مع العنوان الذي اخترته، وظهور محتوى المنشور وقسم التعليقات.",
+      "expectedResult": "يفتح مسار /detail/، ويطابق عنوان التفاصيل العنوان المختار أثناء التشغيل، ويظهر محتوى المنشور وقسم التعليقات."
+    },
+    {
+      "sourceId": "4",
+      "automationId": "SA-0004",
+      "name": "Switching categories",
+      "platform": "Web",
+      "feature": "Community",
+      "story": "Categories",
+      "severity": "normal",
+      "tags": ["regression", "feature-community"],
+      "steps": "افتح «محتاج فزعتكم»، ثم انتقل إلى «أخبار سلة». تحقق من المسار /category-detail/salla-news/24، وعنوان المجموعة الجديدة وظهور منشوراتها، ثم ارجع إلى «محتاج فزعتكم» وتحقق من تحديث العنوان والمسار والمحتوى.",
+      "expectedResult": "تتحدث المسارات والعناوين والمنشورات عند الانتقال إلى أخبار سلة ثم العودة إلى محتاج فزعتكم."
+    }
+  ]
+}

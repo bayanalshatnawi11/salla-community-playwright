@@ -1,0 +1,15 @@
+{
+  "name": "Salla — Live Community",
+  "plugins": {
+    "awesome": {
+      "options": {
+        "reportName": "Salla — Live | Community / Web",
+        "singleFile": true,
+        "reportLanguage": "en",
+        "groupBy": ["parentSuite", "suite"],
+        "open": false,
+        "publish": false
+      }
+    }
+  }
+}

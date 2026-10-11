@@ -1,0 +1,62 @@
+name: Salla Community Playwright
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  community:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: playwright
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: playwright/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Check TypeScript
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Check formatting
+        run: npm run format:check
+      - name: Run the four public Community scenarios
+        run: npm test
+      - name: Upload Playwright reports and evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-community
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            .testvibe/runs/**/playwright-report/
+            .testvibe/runs/**/artifacts/
+            .testvibe/runs/**/results.json
+            .testvibe/runs/**/summary.json
+            .testvibe/runs/**/runner.log
+      - name: Upload Allure results and standalone report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-community
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            .testvibe/runs/**/allure-results/
+            .testvibe/reports/**/Salla-Community-Live-Web.html
+            .testvibe/reports/**/source-manifest.json
+            .testvibe/reports/**/generation.log

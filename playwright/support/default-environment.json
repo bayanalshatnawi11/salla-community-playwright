@@ -1,0 +1,7 @@
+{
+  "name": "Live",
+  "baseURL": "https://community.salla.sa/",
+  "production": true,
+  "loginRequired": false,
+  "headless": true
+}

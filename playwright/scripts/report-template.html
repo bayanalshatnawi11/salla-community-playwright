@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{project}} — {{environment}} — {{feature}}</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f4f7fa;
+        color: #20303f;
+        font:
+          15px/1.65 system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 1120px;
+        margin: auto;
+        padding: 28px;
+      }
+      .table-scroll {
+        overflow-x: auto;
+      }
+      .metadata-table th,
+      .metadata-table td {
+        vertical-align: top;
+      }
+      .metadata-table tbody th {
+        background: white;
+        font-weight: 400;
+      }
+      .metadata {
+        margin: 10px 0 0;
+        font-size: 13px;
+      }
+      .metadata div {
+        margin: 7px 0;
+      }
+      .metadata dt {
+        font-weight: 600;
+        color: #637487;
+      }
+      .metadata dd {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+      .case-id {
+        display: block;
+        margin: 5px 0;
+        color: #106a94;
+      }
+      .result-badge {
+        display: inline-block;
+        padding: 4px 9px;
+        border: 1px solid currentColor;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+      .execution-details {
+        padding-top: 8px;
+      }
+      .execution-details h4 {
+        margin: 18px 0 8px;
+      }
+      .report-links a {
+        display: inline-block;
+        margin-inline-end: 18px;
+      }
+      .metadata-title {
+        padding: 12px 16px;
+        background: #eaf1f5;
+        border-right: 4px solid #106a94;
+        border-radius: 6px;
+      }
+      h1 {
+        font-size: 26px;
+        margin: 0 0 6px;
+      }
+      h2 {
+        font-size: 19px;
+        margin-top: 26px;
+      }
+      .muted,
+      small {
+        color: #637487;
+      }
+      small {
+        display: block;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background: white;
+        margin: 14px 0;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: start;
+        border-bottom: 1px solid #e5ebf1;
+      }
+      th {
+        background: #eaf1f5;
+      }
+      .failed,
+      .broken {
+        color: #b32d36;
+        font-weight: 700;
+      }
+      .passed {
+        color: #167a49;
+      }
+      .blocked {
+        color: #946710;
+      }
+      .notice {
+        background: #fff4db;
+        border-right: 4px solid #d09a27;
+        padding: 12px 16px;
+        border-radius: 6px;
+      }
+      details {
+        padding: 14px;
+        background: white;
+        margin: 8px 0;
+        border: 1px solid #e5ebf1;
+        border-radius: 8px;
+      }
+      summary {
+        cursor: pointer;
+      }
+      article {
+        margin: 22px 0;
+        padding: 20px;
+        background: white;
+        border: 1px solid #dce4ec;
+        border-radius: 10px;
+      }
+      .step {
+        margin: 8px 0;
+        padding: 10px;
+      }
+      .step .step {
+        margin-inline-start: 14px;
+      }
+      pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        background: #f1f4f7;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #20303f;
+      }
+      .attachment {
+        margin: 16px 0;
+        padding: 12px;
+        border: 1px solid #e5ebf1;
+        border-radius: 8px;
+      }
+      video,
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 640px;
+        margin: auto;
+      }
+      video {
+        width: 800px;
+      }
+      .skipped,
+      .unknown {
+        color: #637487;
+      }
+      a {
+        color: #106a94;
+      }
+      .source {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 dir="ltr">{{project}} — {{environment}} | {{feature}} / {{platforms}}</h1>
+      <p class="muted">
+        {{feature}} · Playwright TypeScript · Page Object Model<br />التوقيت: Asia/Amman ·
+        <span dir="ltr">{{baseURL}}</span>
+      </p>
+      <p class="report-links">
+        <a href="#metadata">Metadata — معلومات التشغيل</a><a href="#evidence">الخطوات والأدلة</a>
+      </p>
+      {{blocker}}
+      <table>
+        <thead>
+          <tr>
+            <th>النطاق</th>
+            <th>Passed</th>
+            <th>Failed</th>
+            <th>Broken</th>
+            <th>Skipped</th>
+            <th>لم يُشغّل</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{platformRows}}
+        </tbody>
+      </table>
+      <h2>نتائج الحالات</h2>
+      <div class="table-scroll">
+        <table aria-label="نتائج الحالات">
+          <thead>
+            <tr>
+              <th>المعرّف</th>
+              <th>اسم الحالة الأصلي</th>
+              <th>المنصة</th>
+              <th>آخر نتيجة آلية</th>
+              <th>وقت بدء التشغيل — عمّان</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{caseRows}}
+          </tbody>
+        </table>
+      </div>
+      <section id="metadata" aria-labelledby="metadata-title">
+        <h2 id="metadata-title" class="metadata-title">Metadata — معلومات التشغيل</h2>
+        <p>
+          هذا هو قسم الميتاداتا. جميع المعلومات ظاهرة في جدول، بسطر لكل حالة، دون فتح صفحات إضافية.
+          التوقيت: Asia/Amman. القيم من التشغيل الأصلي المحفوظ.
+        </p>
+        <div class="table-scroll">
+          <table class="metadata-table" aria-label="Metadata — معلومات التشغيل">
+            <thead>
+              <tr>
+                <th scope="col">الحالة وتصنيفها</th>
+                <th scope="col">النتيجة</th>
+                <th scope="col">البيئة والمتصفح وWorkers</th>
+                <th scope="col">التوقيت والمدة</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{metadataRows}}
+            </tbody>
+          </table>
+        </div>
+        {{identityNotice}}
+      </section>
+      {{observation}}
+      <p class="muted">
+        أُدمجت جميع مرفقات النتائج المختارة، بما فيها التسجيلات والصور وملفات Trace المتاحة
+        ({{attachmentCount}} مرفق). التشغيلات الأقدم محفوظة محليًا ولا تدخل في نتيجة الحالة الحالية.
+      </p>
+      <p class="source" dir="ltr">Source runs: {{sourceRuns}}</p>
+      <section id="evidence" aria-labelledby="evidence-title">
+        <h2 id="evidence-title">تفاصيل Allure والخطوات والأدلة</h2>
+        <p>
+          الخطوات والمرفقات من نفس النتائج المحفوظة. Error context هو ملف سياق لتشخيص الفشل، ويمكن
+          عرضه تحت أدلة الحالة.
+        </p>
+        {{executionArticles}}
+      </section>
+      {{nativeDownload}}
+    </main>
+  </body>
+</html>
